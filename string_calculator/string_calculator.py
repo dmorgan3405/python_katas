@@ -4,14 +4,16 @@ from functools import reduce
 class StringCalculator():
 
     def add(self, addends):
-        parsed_addends = addends.replace("\n", ",")
-        if parsed_addends == "":
+        if addends == "":
             return 0
-        addends = self.map_to_addends(parsed_addends)
-        return self.calculate_sum(addends)
+        parsed_addends = self.replace_delimiter(addends)
+        return self.sum(parsed_addends)
 
-    def map_to_addends(self, addends):
+    def replace_delimiter(self, addends):
+        return addends.replace("\n", ",")
+
+    def sum(self, addends):
+        return reduce(lambda x, y: x + y, self.map_to_integers(addends))
+
+    def map_to_integers(self, addends):
         return [int(addend) for addend in addends.split(',')]
-
-    def calculate_sum(self, addends):
-        return reduce(lambda x, y: x + y, addends)

@@ -3,7 +3,7 @@ from ..string_calculator import StringCalculator
 
 class TestStringCalculator():
 
-    def setup_method(self, method):
+    def setup_method(self, _):
         self.string_calc = StringCalculator()
 
     def test_result_is_zero_for_empty_string(self):
